@@ -12,12 +12,7 @@
         props:{
             flightInfo: {
                 type: Object,
-                default: ()=> ({
-                    "Destination date": "",
-                    "Desinaion gate": "",
-                    "Plane number": "",
-                    "Duration of the flight": ""
-                })
+                default: ()=> ({})
             }
         },
         computed:{

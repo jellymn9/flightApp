@@ -13,6 +13,7 @@
       <v-col>
         <flights-item
         :flightItem = "flightItem"
+        @customChange="customEvent"
         ></flights-item>
       </v-col>
     </v-row>
@@ -76,6 +77,17 @@ export default {
       this.workers = await getWorkers;
     },
     async updateTablesData(){
+      // const cat = {
+      //   name: "Molly",
+      //   owner: "Fred Larkin",
+      //   color: "Brown",
+      //   age: 10,
+      //   kittens: 0
+      // };
+      // const { kittens: children } = cat;
+      // console.log(children);
+      //Returns ---> 0
+
       const newNames = (await this.getFlight()).map((flight) => {
         const newFlightObj = {};
         Object.keys(flight).forEach( (flightKey) => {
@@ -109,6 +121,9 @@ export default {
       this.activeWorkerId = workerId;
       await this.updateTablesData();
       await this.timeout();
+    },
+    customEvent(first, second){
+      console.log("logs from parent:", first, second);
     }
   }
 };

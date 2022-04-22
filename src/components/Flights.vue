@@ -41,7 +41,8 @@ export default {
                 return JSON.stringify(item);
             });
             this.itemIndex = itemsToString.indexOf(JSON.stringify(row));
-            //this.$emit("customChange", i);
+            //console.log(this,":this:");
+            this.$emit("customChange", this.itemIndex);
         }
 
     },

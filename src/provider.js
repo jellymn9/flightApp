@@ -1,6 +1,7 @@
 const axios = require('axios');
+const url = "https://625ea343873d6798e2ab226c.mockapi.io";
 
-const getWorkers = axios.get('https://interview-mock.herokuapp.com/api/workers/')
+const getWorkers = axios.get(url + '/workers')
   .then(function (response) {
     return response.data;
   })
@@ -9,7 +10,7 @@ const getWorkers = axios.get('https://interview-mock.herokuapp.com/api/workers/'
   });
 
   const getFlightsForWorker = async function(workerId){
-     return await axios.get(`https://interview-mock.herokuapp.com/api/workers/${workerId}`)
+     return await axios.get(url + `/workers/${workerId}/flights`)
       .then(function (response) {
         return response.data;
       })
