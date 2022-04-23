@@ -21,7 +21,7 @@
         },
         methods:{
             sendWorkerIdBackToParent(id){
-                this.$emit("customChange", id);
+                this.$emit("updateFlightsForWorker", id);
             }
         }
     }

@@ -4,7 +4,7 @@
       <v-col>
         <workers-item
         :workers = "workers"
-        @customChange="updateFlightsForWorker"
+        @updateFlightsForWorker="updateFlightsForWorker"
         ></workers-item>
       </v-col>
     </v-row>
@@ -13,7 +13,7 @@
       <v-col>
         <flights-item
         :flightItem = "flightItem"
-        @customChange="customEvent"
+        @customChange="updateFlightIndex"
         ></flights-item>
       </v-col>
     </v-row>
@@ -69,8 +69,8 @@ export default {
     nIntervId: 0,
     workers: [],
     flightItem: {
-      headers: [],
-      items: []
+      headers: [],//table headers
+      items: []//table items
     }
   }),
   async created(){
@@ -88,20 +88,20 @@ export default {
     },
     async updateTablesData(){
 
-      const newNames = (await this.getFlight()).map((flight) => {
+      const newNames = (await this.getFlight()).map((flight) => {//return flight array of objects with new propery names
         const newFlightObj = {};
         Object.keys(flight).forEach( (flightKey) => {
           newFlightObj[namesMappingObj.tableData[flightKey] || namesMappingObj.flightInfoData[flightKey]] = flight[flightKey];
         });
         return newFlightObj;
       });
-      this.flightItem.headers = Object.values(namesMappingObj.tableData).map( (headerName) => ({
+      this.flightItem.headers = Object.values(namesMappingObj.tableData).map( (headerName) => ({//populating flightItem.headers
           text: headerName,
           value: headerName.toLowerCase().replace(/ /g, ""),
           sortable: false
         }) 
       );
-      this.flightItem.items = newNames.map( (flight) => {
+      this.flightItem.items = newNames.map( (flight) => {//populating flightItem.items
         const o = {};
         const flightDataObject = destruct(flight,...(Object.values(namesMappingObj.tableData)));
         o.item = {};
@@ -119,10 +119,11 @@ export default {
     },
     async updateFlightsForWorker(workerId){
       this.activeWorkerId = workerId;
+      //this.nIntervId = 0;
       await this.updateTablesData();
       await this.timeout();
     },
-    customEvent(index){
+    updateFlightIndex(index){
       this.activeFlightIndex = index;
     }
   }
