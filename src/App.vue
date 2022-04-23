@@ -17,11 +17,19 @@
         ></flights-item>
       </v-col>
     </v-row>
+    <v-row class=".main-units">
+        <v-col>
+            <flight-information
+            :flightInfo="flightItem.items.length ? flightItem.items[activeFlightIndex].info : undefined"
+            ></flight-information>
+        </v-col>
+    </v-row>
   </v-container>
 </template>
 
 <script>
 import FlightsItem from './components/Flights';
+import FlightInformation from './components/FlightInformation';
 import WorkersItem from './components/Workers';
 import {getWorkers, getFlightsForWorker} from './provider';
 
@@ -51,11 +59,13 @@ export default {
 
   components: {
     FlightsItem,
-    WorkersItem
+    WorkersItem,
+    FlightInformation
   },
 
   data: () => ({
     activeWorkerId: "",
+    activeFlightIndex: 0,
     nIntervId: 0,
     workers: [],
     flightItem: {
@@ -122,8 +132,9 @@ export default {
       await this.updateTablesData();
       await this.timeout();
     },
-    customEvent(first, second){
-      console.log("logs from parent:", first, second);
+    customEvent(index){
+      console.log("logs from parent:", index);
+      this.activeFlightIndex = index;
     }
   }
 };

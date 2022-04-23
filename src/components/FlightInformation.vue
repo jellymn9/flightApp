@@ -1,7 +1,7 @@
 <template>
     <div>
-        <p v-for="(info,index) in Object.keys(flightInfoComputed)" :key="index" class="flight-info-class">
-            {{info}}: {{flightInfoComputed[info]}}
+        <p v-for="(info,index) in Object.keys(flightInfo)" :key="index" class="flight-info-class">
+            {{info}}: {{flightInfo[info]}}
         </p>
     </div>
 </template>
@@ -13,11 +13,6 @@
             flightInfo: {
                 type: Object,
                 default: ()=> ({})
-            }
-        },
-        computed:{
-            flightInfoComputed(){
-                return this.flightInfo;
             }
         }
     }

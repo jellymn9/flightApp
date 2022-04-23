@@ -11,25 +11,25 @@
                 ></v-data-table>
             </v-col>
         </v-row>
-        <v-row class=".main-units">
+        <!-- <v-row class=".main-units">
             <v-col>
                 <flight-information
                 :flightInfo="flightItem.items[itemIndex].info"
                 ></flight-information>
             </v-col>
-        </v-row>
+        </v-row> -->
     </v-container>
 
 </template>
 
 <script>
 
-import FlightInformation from './FlightInformation';
+//import FlightInformation from './FlightInformation';
 
 export default {
     name: "FlightsItem",
     props: ["flightItem"],
-    components:{FlightInformation},
+    //components:{FlightInformation},
     data(){
         return{
             itemIndex: 0
