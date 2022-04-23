@@ -11,25 +11,15 @@
                 ></v-data-table>
             </v-col>
         </v-row>
-        <!-- <v-row class=".main-units">
-            <v-col>
-                <flight-information
-                :flightInfo="flightItem.items[itemIndex].info"
-                ></flight-information>
-            </v-col>
-        </v-row> -->
     </v-container>
 
 </template>
 
 <script>
 
-//import FlightInformation from './FlightInformation';
-
 export default {
     name: "FlightsItem",
     props: ["flightItem"],
-    //components:{FlightInformation},
     data(){
         return{
             itemIndex: 0
@@ -41,7 +31,6 @@ export default {
                 return JSON.stringify(item);
             });
             this.itemIndex = itemsToString.indexOf(JSON.stringify(row));
-            //console.log(this,":this:");
             this.$emit("customChange", this.itemIndex);
         }
 
