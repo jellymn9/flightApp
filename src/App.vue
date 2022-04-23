@@ -42,10 +42,10 @@ const namesMappingObj = {
     to: "Destination"
   },
   flightInfoData:{
-    to_date: "Destination date",//info
-    to_gate: "Destination gate",//info,
-    plane: "Plane number",//info
-    duration: "Duration of the flight"//info
+    to_date: "Destination date",
+    to_gate: "Destination gate",
+    plane: "Plane number",
+    duration: "Duration of the flight"
   }
 };
 
@@ -87,16 +87,6 @@ export default {
       this.workers = await getWorkers;
     },
     async updateTablesData(){
-      // const cat = {
-      //   name: "Molly",
-      //   owner: "Fred Larkin",
-      //   color: "Brown",
-      //   age: 10,
-      //   kittens: 0
-      // };
-      // const { kittens: children } = cat;
-      // console.log(children);
-      //Returns ---> 0
 
       const newNames = (await this.getFlight()).map((flight) => {
         const newFlightObj = {};
@@ -133,7 +123,6 @@ export default {
       await this.timeout();
     },
     customEvent(index){
-      console.log("logs from parent:", index);
       this.activeFlightIndex = index;
     }
   }
